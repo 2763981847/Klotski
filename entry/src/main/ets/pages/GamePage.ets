@@ -6,6 +6,8 @@ import GameConstants from '../common/constant/GameConstants'
 import MathUtils from '../common/util/MathUtils'
 import SuccessDialog from '../view/SuccessDialog'
 import TimerComponent from '../view/TimerComponent'
+import TitleComponent from '../view/TitleComponent'
+import OriginImageDialog from '../view/OriginImageDialog'
 
 
 @Entry
@@ -107,9 +109,7 @@ struct GamePage {
 
   build() {
     Column({ space: 15 }) {
-      Text('数字华容道')
-        .fontSize(24)
-        .fontColor('#182431')
+      TitleComponent()
       Row() {
         Row({ space: 5 }) {
           Button() {
@@ -159,7 +159,7 @@ struct GamePage {
           GridItem() {
             Image(croppedImage.pixelMap).objectFit(ImageFit.Contain)
           }.onClick(() => this.tryMoveImage(index))
-        }, (croppedImage: CroppedImage) => croppedImage.toString())
+        }, (croppedImage: CroppedImage) => croppedImage.index.toString())
       }
       .aspectRatio(this.selectedImageAspectRatios)
       .layoutDirection(GridDirection.Row)
@@ -177,26 +177,5 @@ struct GamePage {
     .width('100%')
     .height('100%')
 
-  }
-}
-
-@CustomDialog
-struct OriginImageDialog {
-  @Link selectedImage: PixelMap
-  controller: CustomDialogController
-
-  build() {
-    Column() {
-      Image(this.selectedImage)
-        .objectFit(ImageFit.Contain)
-        .height('80%')
-        .width('80%')
-      Button('收起原图')
-        .onClick(() => {
-          this.controller.close()
-        })
-        .margin({ bottom: 10 })
-    }.alignItems(HorizontalAlign.Center)
-    .justifyContent(FlexAlign.Center)
   }
 }

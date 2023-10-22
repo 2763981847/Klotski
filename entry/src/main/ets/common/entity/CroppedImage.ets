@@ -9,8 +9,4 @@ export default class CroppedImage {
     this.pixelMap = pixelMap
     this.index = index
   }
-
-  toString(): string {
-    return this.index.toString()
-  }
 }

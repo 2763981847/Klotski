@@ -4,6 +4,7 @@ import router from '@ohos.router';
 import GameConstants from '../common/constant/GameConstants';
 import IOUtils from '../common/util/IOUtils';
 import DifficultySelectComponent from '../view/DifficultySelectComponent';
+import TitleComponent from '../view/TitleComponent';
 
 
 @Entry()
@@ -35,9 +36,7 @@ struct Index {
 
   build() {
     Column({ space: 20 }) {
-      Text('数字华容道')
-        .fontSize(24)
-        .fontColor('#182431')
+      TitleComponent()
       DifficultySelectComponent({ rows: $rows, cols: $cols, withIndex: $withIndex })
         .height('10%')
         .width('100%')

@@ -41,9 +41,7 @@ export default struct ImageSelectComponent {
 
   async selectFromAlbum() {
     let pixelMap = await IOUtils.getPixelMapFromAlbum()
-    let temp = [pixelMap]
-    temp.push(...this.images)
-    this.images = temp
+    this.images = [pixelMap, ...this.images]
     this.selectedIndex = 0
     this.smallScroller.scrollToIndex(0)
   }
@@ -85,20 +83,24 @@ export default struct ImageSelectComponent {
         Text('从相册选择图片')
           .fontSize(16)
           .fontColor('#182431')
-        Button("浏览图片", { type: ButtonType.Normal })
-          .fontColor('#182431')
-          .fontSize(16)
-          .height('70%')
-          .borderRadius(5)
-          .onClick(() => this.selectFromAlbum())
-          .backgroundColor('#FEFEFE')
-          .borderColor('#D2D3D4')
-          .borderWidth({
-            left: 0.2,
-            right: 0.2,
-            top: 0.4,
-            bottom: 0.4
-          })
+        Text()
+        Button({ type: ButtonType.Normal }) {
+          Image($r('app.media.album')).objectFit(ImageFit.Contain)
+        }
+        .width('20%')
+        .height('70%')
+        .fontColor('#182431')
+        .fontSize(16)
+        .borderRadius(5)
+        .onClick(() => this.selectFromAlbum())
+        .backgroundColor('#FEFEFE')
+        .borderColor('#D2D3D4')
+        .borderWidth({
+          left: 0.2,
+          right: 0.2,
+          top: 0.4,
+          bottom: 0.4
+        })
       }
       .alignItems(VerticalAlign.Center)
       .justifyContent(FlexAlign.SpaceAround)
