@@ -27,5 +27,4 @@ export default class IOUtils {
     let fd = fileIo.openSync(result.photoUris[0]).fd
     return await image.createImageSource(fd).createPixelMap()
   }
-
 }

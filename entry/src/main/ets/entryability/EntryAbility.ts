@@ -13,10 +13,7 @@ export default class EntryAbility extends UIAbility {
   }
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    PersistentStorage.PersistProp('images', []);
-    PersistentStorage.PersistProp('selectedIndex', 0);
     let context = this.context;
-    let pathDir = context.filesDir;
     // Main window is created, set main page for this ability
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
 

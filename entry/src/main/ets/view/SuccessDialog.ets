@@ -29,8 +29,18 @@ export default struct SuccessDialog {
 
   build() {
     Column({ space: 10 }) {
-      Text('通关啦！')
-        .fontSize(30)
+      Row({ space: 10 }) {
+        Image($r('app.media.congratulation'))
+          .height(30)
+          .objectFit(ImageFit.Contain)
+        Text('通关啦')
+          .fontSize(30)
+        Image($r('app.media.congratulation'))
+          .height(30)
+          .objectFit(ImageFit.Contain)
+      }.justifyContent(FlexAlign.Center)
+      .alignItems(VerticalAlign.Center)
+
       Text('本次用时:' + this.formatMillisecondsToHHMMSS(this.elapsedTime))
       Text('使用步数:' + this.stepCounter)
       Row({ space: 20 }) {

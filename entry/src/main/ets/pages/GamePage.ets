@@ -3,11 +3,11 @@ import GridUtils from '../common/util/GridUtils'
 import ImageUtils from '../common/util/ImageUtils'
 import router from '@ohos.router'
 import GameConstants from '../common/constant/GameConstants'
-import MathUtils from '../common/util/MathUtils'
 import SuccessDialog from '../view/SuccessDialog'
 import TimerComponent from '../view/TimerComponent'
 import TitleComponent from '../view/TitleComponent'
 import OriginImageDialog from '../view/OriginImageDialog'
+import GameUtils from '../common/util/GameUtils'
 
 
 @Entry
@@ -64,7 +64,7 @@ struct GamePage {
 
   reset() {
     do {
-      MathUtils.shuffle(this.croppedImages)
+      GameUtils.shuffle(this.croppedImages, this.cols)
     } while (this.checkForSuccess())
     this.stepCounter = 0
     this.textTimerController.reset()
@@ -72,8 +72,8 @@ struct GamePage {
   }
 
   tryMoveImage(index: number): boolean {
-    const blankIndex = this.getBlankIndex()
-    if (!MathUtils.areIndexesAdjacent(index, blankIndex, this.cols)) {
+    const blankIndex = GameUtils.getBlankIndex(this.croppedImages)
+    if (!GameUtils.areIndexesAdjacent(index, blankIndex, this.cols)) {
       return false
     }
     this.stepCounter ++
@@ -96,15 +96,6 @@ struct GamePage {
       }
     }
     return true
-  }
-
-  getBlankIndex(): number {
-    for (let i = 0;i < this.croppedImages.length; i++) {
-      if (this.croppedImages[i].pixelMap === null) {
-        return i
-      }
-    }
-    return -1
   }
 
   build() {

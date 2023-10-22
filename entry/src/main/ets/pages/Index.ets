@@ -6,7 +6,6 @@ import IOUtils from '../common/util/IOUtils';
 import DifficultySelectComponent from '../view/DifficultySelectComponent';
 import TitleComponent from '../view/TitleComponent';
 
-
 @Entry()
 @Component
 struct Index {
@@ -17,10 +16,8 @@ struct Index {
   @StorageLink('images') images: PixelMap[] = []
 
   aboutToAppear() {
-    if (this.images.length === 0) {
-      IOUtils.getPixelMapsFromResource(imageResources)
-        .then(images => this.images = images)
-    }
+    IOUtils.getPixelMapsFromResource(imageResources)
+      .then(images => this.images = images)
   }
 
   startGame() {
