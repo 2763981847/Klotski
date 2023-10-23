@@ -73,7 +73,7 @@ struct GamePage {
 
   tryMoveImage(index: number): boolean {
     const blankIndex = GameUtils.getBlankIndex(this.croppedImages)
-    if (!GameUtils.areIndexesAdjacent(index, blankIndex, this.cols)) {
+    if (!GameUtils.areIndexesAdjacent(index, blankIndex, this.rows, this.cols)) {
       return false
     }
     this.stepCounter ++
