@@ -1,3 +1,4 @@
+// 支持的难度等级
 export  const difficultyLevels: Array<SelectOption> = [
   { value: '2' },
   { value: '3' },

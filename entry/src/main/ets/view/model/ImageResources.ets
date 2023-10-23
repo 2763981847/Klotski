@@ -1,3 +1,4 @@
+// 默认可选择的图片
 export const imageResources: Array<Resource> =
   [$r('app.media.img'),
   $r('app.media.img_1'),
