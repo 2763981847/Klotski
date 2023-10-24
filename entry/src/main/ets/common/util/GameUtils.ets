@@ -5,6 +5,7 @@ import CroppedImage from '../entity/CroppedImage';
  */
 export default class GameUtils {
 
+
   /**
    * 打乱函数
    * @param array 分割后的子图数组
@@ -13,19 +14,16 @@ export default class GameUtils {
   public static shuffle(array: Array<CroppedImage>, cols: number): void {
     // 获取空白图块的索引
     let blankIndex = this.getBlankIndex(array);
-
     // 定义移动方向，包括左、右、上、下
     const n = array.length, direction = [-1, 1, -cols, cols];
-
     // 循环 n*n 次，打乱图块的位置
     for (let i = 0; i < n * n; i++) {
       let nextBlankIndex;
-
       // 随机选择一个方向，直到找到有效的下一个空白图块的索引
       do {
         nextBlankIndex = blankIndex + direction[Math.floor(Math.random() * 4)];
+        // 随机得到的坐标不合法或者在二维化后的子图数组中并不相邻
       } while (!this.areIndexesAdjacent(blankIndex, nextBlankIndex, n / cols, cols));
-
       // 交换当前图块和下一个空白图块的位置
       [array[blankIndex], array[nextBlankIndex]] = [array[nextBlankIndex], array[blankIndex]];
       blankIndex = nextBlankIndex;

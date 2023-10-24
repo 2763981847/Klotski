@@ -84,7 +84,7 @@ struct GamePage {
     this.textTimerController.start()
   }
 
-  // 尝试移动图像
+  // 尝试移动子图
   tryMoveImage(index: number): boolean {
     // 取得空白格坐标
     const blankIndex = GameUtils.getBlankIndex(this.croppedImages)
